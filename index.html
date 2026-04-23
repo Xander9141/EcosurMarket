@@ -11,17 +11,30 @@
   --verde-oscuro: #1b5e20;
   --verde-claro: #66bb6a;
   --naranjo: #ff6f00;
+
+  --bg: #f4fff4;
+  --text: #333;
+  --card: #ffffff;
+}
+
+/* DARK MODE */
+body.dark {
+  --bg: #121212;
+  --text: #e0e0e0;
+  --card: #1e1e1e;
 }
 
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #f4fff4;
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
 }
 
 /* HEADER */
 header {
-  background: white;
+  background: var(--card);
   padding: 10px 30px;
   display: flex;
   justify-content: space-between;
@@ -31,6 +44,12 @@ header {
 
 .logo img {
   height: 90px;
+  cursor: pointer;
+}
+
+nav {
+  display: flex;
+  align-items: center;
 }
 
 nav a {
@@ -38,6 +57,17 @@ nav a {
   text-decoration: none;
   color: var(--verde);
   font-weight: bold;
+}
+
+/* BOTON DARK */
+.toggle {
+  margin-left: 20px;
+  padding: 8px 15px;
+  border: none;
+  background: var(--naranjo);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* HERO */
@@ -85,7 +115,7 @@ nav a {
 
 /* CARD */
 .card {
-  background: white;
+  background: var(--card);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -117,11 +147,6 @@ nav a {
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
-  transition: 0.2s;
-}
-
-.whatsapp-btn:hover {
-  background: #1ebe5d;
 }
 
 /* TRANSFERENCIAS */
@@ -142,7 +167,20 @@ nav a {
   margin-bottom: 20px;
 }
 
-/* BOTON FLOTANTE */
+/* MAPA */
+.map-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.map-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* FLOAT */
 .float {
   position: fixed;
   bottom: 20px;
@@ -172,14 +210,17 @@ footer {
 
 <header>
   <div class="logo">
-    <img src="img/logo.png" alt="EcoSur Market">
+    <img src="img/logo.png" onclick="scrollToTop()">
   </div>
 
   <nav>
     <a href="#">Inicio</a>
     <a href="#productos">Productos</a>
     <a href="#transferencias">Transferencias</a>
+    <a href="#ubicacion">Ubicación</a>
     <a href="#contacto">Contacto</a>
+
+    <button class="toggle" onclick="toggleDark()">🌙</button>
   </nav>
 </header>
 
@@ -198,47 +239,13 @@ footer {
 
   <div class="grid">
 
-    <div class="card">
-      <img src="img/producto1.jpg">
-      <h3>Bebidas Energéticas</h3>
-      <a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20bebidas%20energéticas">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="img/producto2.jpeg">
-      <h3>Bebidas</h3>
-      <a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20bebidas">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="img/producto3.jpg">
-      <h3>Papas Lays</h3>
-      <a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20papas%20lays">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="img/producto4.webp">
-      <h3>Mercadería</h3>
-      <a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20mercadería">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="img/producto5.jpg">
-      <h3>Productos de Limpieza</h3>
-      <a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20productos%20de%20limpieza">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="img/producto6.jpg">
-      <h3>Aseo Personal</h3>
-      <a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20productos%20de%20aseo%20personal">Comprar</a>
-    </div>
-
-    <div class="card">
-      <img src="img/productos7.jpg">
-      <h3>Frutas y Verduras</h3>
-      <a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20frutas%20y%20verduras">Comprar</a>
-    </div>
+    <div class="card"><img src="img/producto1.jpg"><h3>Bebidas Energéticas</h3><a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20bebidas%20energéticas">Comprar</a></div>
+    <div class="card"><img src="img/producto2.jpeg"><h3>Bebidas</h3><a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20bebidas">Comprar</a></div>
+    <div class="card"><img src="img/producto3.jpg"><h3>Papas Lays</h3><a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20papas%20lays">Comprar</a></div>
+    <div class="card"><img src="img/producto4.webp"><h3>Mercadería</h3><a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20mercadería">Comprar</a></div>
+    <div class="card"><img src="img/producto5.jpg"><h3>Productos de Limpieza</h3><a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20productos%20de%20limpieza">Comprar</a></div>
+    <div class="card"><img src="img/producto6.jpg"><h3>Aseo Personal</h3><a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20productos%20de%20aseo%20personal">Comprar</a></div>
+    <div class="card"><img src="img/productos7.jpg"><h3>Frutas y Verduras</h3><a class="whatsapp-btn" href="https://wa.me/56950287981?text=Quiero%20comprar%20frutas%20y%20verduras">Comprar</a></div>
 
   </div>
 </section>
@@ -249,14 +256,39 @@ footer {
 
   <div class="transfer">
     <img src="img/transferencias.png">
-
     <p>Envía dinero desde Chile de forma rápida, segura y confiable hacia cualquier país de Latinoamérica.</p>
 
     <a class="whatsapp-btn"
-       href="https://wa.me/56950287981?text=Hola,%20quiero%20realizar%20una%20transferencia%20de%20dinero%20desde%20Chile%20hacia..."
-       target="_blank">
+       href="https://wa.me/56950287981?text=Hola,%20quiero%20realizar%20una%20transferencia%20desde%20Chile">
        Solicitar Transferencia
     </a>
+  </div>
+</section>
+
+<!-- UBICACION -->
+<section class="section" id="ubicacion">
+  <h2>📍 Nuestra Ubicación</h2>
+
+  <div class="map-container">
+
+    <iframe 
+      src="https://www.google.com/maps?q=-35.9671408,-71.6847148&output=embed"
+      width="100%" height="300"
+      style="border:0; border-radius:10px;">
+    </iframe>
+
+    <p>Visítanos en Longaví, Chile</p>
+
+    <div class="map-buttons">
+      <a class="whatsapp-btn" style="background:#4285F4"
+         href="https://www.google.com/maps/search/?api=1&query=-35.9671408,-71.6847148"
+         target="_blank">Google Maps</a>
+
+      <a class="whatsapp-btn" style="background:#33ccff"
+         href="https://waze.com/ul?ll=-35.9671408,-71.6847148&navigate=yes"
+         target="_blank">Waze</a>
+    </div>
+
   </div>
 </section>
 
@@ -266,9 +298,22 @@ footer {
   <p>📲 WhatsApp: +56 9 5028 7981</p>
 </footer>
 
-<a href="https://wa.me/56950287981?text=Hola,%20quiero%20información" class="float">
-  💬
-</a>
+<a href="https://wa.me/56950287981" class="float">💬</a>
+
+<script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleDark() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("modo", document.body.classList.contains("dark") ? "dark" : "light");
+}
+
+if (localStorage.getItem("modo") === "dark") {
+  document.body.classList.add("dark");
+}
+</script>
 
 </body>
 </html>
